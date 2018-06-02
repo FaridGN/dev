@@ -1,0 +1,23 @@
+body{
+    margin: 0px auto;
+}
+.navig{
+    width:1200px;
+    height: 70px;
+    background-color: lightgray;
+    margin: 0px auto;
+}
+#mylogo{
+    width: 150px;
+    height: 55px;
+    position: absolute;
+    top: 10px;
+    left: 525px;
+}
+
+#exc{
+    position: absolute;
+    top: 10px;
+    left: 700px;
+}
+
