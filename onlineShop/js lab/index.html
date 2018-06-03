@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+    <form action="#">
+        <label for="name" >Name</label>
+        <input type="text" id="name"><br>
+        <label for="email" >Email</label>
+        <input type="email" id="email" required placeholder="enter email"><br>
+        <label for="password" >Password</label>
+        <input type="password" id="password"><br>
+        <label for="passwordrew" >Password</label>
+        <input type="password" id="passwordrew"><br>
+        <input type="submit" onclick="register()" value="Register" >
+    </form>
+<hr>
+<form action="#">
+        <label for="email" >Email</label>
+        <input type="email" id="email_login" required placeholder="enter email"><br>
+        <label for="password" >Password</label>
+        <input type="password" id="password_login"><br>
+        <input type="button" onclick="daxilOl()" value="Login" >
+    </form>
+    <script>
+    
+  
+
+
+    var people = [];
+    
+
+     function $(id) {
+         return document.getElementById(id);
+     }
+
+
+    function Login(email,password) {
+            this.password = password;
+            this.email = email;
+            return this;
+        }
+
+
+    function Person(name,email,password) {
+        this.__proto__ = new Login(email,password);
+        this.name = name;
+        return this;
+    }
+
+
+   function daxilOl() {
+
+    let email = $('email_login').value;
+    let password = $('password_login').value;
+   
+     let finded = false;
+     var user = null;
+
+     for(let k of people) {
+         if(k.email == email && k.password == password) {
+           finded = true;
+           user = k;
+         }
+     }
+
+     if(finded) {
+        localStorage.User = JSON.stringify(user);
+        location.href="products.html";
+     }
+     else
+     alert("not found");
+
+   }
+  
+
+function register() {
+    //get elements
+    let name = $('name').value;
+    let email = $('email').value;
+    let password = $('password').value;
+
+    //create person object
+    if($('password').value==$('passwordrew').value) {
+
+          if($('email').value.indexOf('@')>0) {
+
+                  let person = new Person(name,email,password);
+
+                  people.push(person);
+          }
+    
+
+    }
+    else
+    alert('password incorrect');
+  
+    
+   return false;
+}
+    
+document.addEventListener("DOMContentLoaded", function(event) {
+    if(localStorage.User!=null)
+    document.write("siz artiq login olmusunuz");
+  });
+
+    </script>
+</body>
+</html>
