@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+    <p>
+        <script>
+        if(localStorage.User!=null) {
+            let person = JSON.parse(localStorage.User);
+            document.write(person._name);
+        }
+        </script>
+        <button onclick="logout();">Logout</button>
+    </p>
+<script>
+   
+    function logout() {
+        if(localStorage.User!=null) {
+           delete localStorage.User;
+           document.location.href="index.html";
+        }
+    }
+
+    class Product{
+         constructor(name,model,price,color) {
+        this.name = name;
+        this.model = model;
+        this.price = price;
+        this.color=color;
+        return this;
+         }
+    }
+
+    var products =[];
+  
+     let pd2 = new Product("Samsung G12","Samsung",156,"red");
+     let pd1 = new Product("Acer KP102","Acer",56,"red");
+     let pd3 = new Product("HP 124","HP",563,"red");
+     let pd4 = new Product("Dell QW343","Dell",256,"red");
+
+     products.push(pd1,pd2,pd3,pd4);
+
+  
+
+    function visualize() {
+        for(let k of products) {
+
+          let div =  document.createElement("div");
+          div.style.border="2px solid blue";
+          let pName = document.createElement("p");
+          pName.innerText=k.name;
+
+          let pModel = document.createElement("p");
+          pModel.innerText = k.model;
+
+          let pPrice = document.createElement("p");
+          pPrice.innerText = k.price;
+
+          let pColor = document.createElement("p");
+          pColor.innerText = k.color;
+
+           div.appendChild(pName);
+           div.appendChild(pModel);
+           div.appendChild(pPrice);
+           div.appendChild(pColor);
+
+            document.body.appendChild(div);
+
+        }
+    }
+
+    if(localStorage.User!=null)
+    visualize();
+    else
+    location.href="index.html";
+</script>
+</body>
+</html>

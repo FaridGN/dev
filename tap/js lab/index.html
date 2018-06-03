@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+    <form action="#">
+        <label for="name">Name</label>
+        <input type="text" id="name">
+        <br>
+        <label for="email">Email</label>
+        <input type="email" id="email" required placeholder="enter email">
+        <br>
+        <label for="password">Password</label>
+        <input type="password" id="password">
+        <br>
+        <label for="passwordrew">Password</label>
+        <input type="password" id="passwordrew">
+        <br>
+        <input type="submit" onclick="register()" value="Register">
+    </form>
+    <hr>
+    <form action="#">
+        <label for="email">Email</label>
+        <input type="email" id="email_login" required placeholder="enter email">
+        <br>
+        <label for="password">Password</label>
+        <input type="password" id="password_login">
+        <br>
+        <input type="button" onclick="Check()" value="Login">
+    </form>
+    <script>
+
+        var people = [];
+
+        function $(id) {
+            return document.getElementById(id);
+        }
+
+
+        class Login {
+            constructor(email, password) {
+                this._password = password;
+                this._email = email;
+            }
+            set Email(email) {
+               this._email = n;
+                };
+            get Email() {
+                return this._email;
+            }
+            set Password(password) {
+               this._password = password;         
+            };
+            get Password() {
+                return this._password;
+            }
+        }
+
+
+        function Check() {
+
+            let email = $('email_login').value;
+            let password = $('password_login').value;
+
+            let finded = false;
+            var user = null;
+            for (let k of people) {
+                if (k.Email == email && k.Password == password) { 
+                    finded = true;
+                    user = k;
+                }
+            }
+            if (finded) {
+                localStorage.User = JSON.stringify(user);
+                location.href = "products.html";
+            }
+            else
+                alert("not found");
+        }
+
+        class Person extends Login {
+            constructor(name, email, password) {
+                super(email, password);
+                this._name = name;
+            }
+            set Name(name) {
+                this._name = n;
+            };
+            get Name() {
+                return this._name;
+            }
+        }
+
+        function register() {
+            let name = $('name').value;
+            let email = $('email').value;
+            let password = $('password').value;
+
+            if ($('password').value == $('passwordrew').value) {
+
+                if ($('email').value.indexOf('@') > 0) {
+
+                    let person = new Person(name, email, password);
+
+                    people.push(person);
+                }
+            }
+            else
+                alert('password incorrect');
+            return false;
+        }
+
+
+    </script>
+</body>
+
+</html>
